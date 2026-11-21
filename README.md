@@ -104,7 +104,7 @@ Kami sepakat menggunakan <b>LARAVEL</b>. Karena
 Database yang digunakan adalah **MariaDB**, dikelola menggunakan Laravel Migration dan Eloquent ORM.
 
 ### Diagram Relasi
-
+<!-- 
 ```mermaid
 erDiagram
     WAVES ||--o{ ROOMS : "digunakan bersamaan"
@@ -174,7 +174,7 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-```
+``` -->
 
 ## Pembagian tugas tim 
 
@@ -283,3 +283,4 @@ Penyempurnaan dan Finalisasi
 Website Antiran Selesai
 ```
 
+# Untuk langkah pengerjaan ada di <a href="">
