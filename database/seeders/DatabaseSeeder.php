@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             'code' => 'G1',
             'start_time' => '08:00:00',
             'end_time' => '10:00:00',
-            'max_quota' => 50,
+            'max_quota' => 200,
             'is_active' => true,
         ]);
 
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'code' => 'G2',
             'start_time' => '10:00:00',
             'end_time' => '12:00:00',
-            'max_quota' => 50,
+            'max_quota' => 200,
             'is_active' => true,
         ]);
 
@@ -36,8 +36,8 @@ class DatabaseSeeder extends Seeder
             'code' => 'G3',
             'start_time' => '13:00:00',
             'end_time' => '15:00:00',
-            'max_quota' => 50,
-            'is_active' => false, // Contoh gelombang non-aktif
+            'max_quota' => 200,
+            'is_active' => true, // Contoh gelombang non-aktif
         ]);
 
         // 2. Seed Master Ruangan
@@ -66,17 +66,17 @@ class DatabaseSeeder extends Seeder
         $staffAccounts = [
             [
                 'name' => 'Petugas A',
-                'email' => 'petugasa@antiran.test',
+                'email' => 'petugas1@gmail.com',
                 'room_id' => $room1->id,
             ],
             [
                 'name' => 'Petugas B',
-                'email' => 'petugasb@antiran.test',
+                'email' => 'petugas2@gmail.com',
                 'room_id' => $room2->id,
             ],
             [
                 'name' => 'Petugas C',
-                'email' => 'petugasc@antiran.test',
+                'email' => 'petugas3@gmail.com',
                 'room_id' => $room3->id,
             ],
         ];

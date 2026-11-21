@@ -1,19 +1,22 @@
 <?php
+
 namespace App\Enums;
 
 enum TicketStatus: string
 {
-    case WAITING = 'waiting';
-    case CALLED = 'called';
-    case COMPLETED = 'completed';
-    case DELETED = 'deleted';
+    case WAITING = 'WAITING';
+    case CALLED = 'CALLED';
+    case COMPLETED = 'COMPLETED';
+    case DELETED = 'DELETED';
 
-    public static function activeStatues(): array
+    /**
+     * Status yang masih dianggap sebagai sesi aktif pengunjung.
+     */
+    public static function activeStatuses(): array
     {
-        return[
+        return [
             self::WAITING->value,
             self::CALLED->value,
         ];
     }
 }
-?>
