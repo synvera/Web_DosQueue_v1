@@ -16,7 +16,7 @@ class AuthController extends Controller
      */
     public function login(StaffLoginRequest $request): JsonResponse
     {
-        $user = User::with(['wave', 'room'])
+        $user = User::with('room')
             ->where('email', $request->validated('email'))
             ->first();
 
@@ -28,11 +28,11 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // Pastikan petugas sudah dipetakan ke gelombang dan ruangan
-        if (! $user->wave_id || ! $user->room_id) {
+        // Petugas ditugaskan ke satu ruangan dan menangani semua gelombang di ruangan tersebut.
+        if (! $user->room_id) {
             return response()->json([
                 'success' => false,
-                'message' => 'Akun petugas belum memiliki penugasan gelombang atau ruangan.',
+                'message' => 'Akun petugas belum memiliki penugasan ruangan.',
                 'data' => null,
             ], 403);
         }
@@ -54,11 +54,11 @@ class AuthController extends Controller
     }
 
     /**
-     * Mengambil informasi petugas yang sedang login beserta penugasan gelombang & ruangan.
+     * Mengambil informasi petugas yang sedang login beserta penugasan ruangannya.
      */
     public function me(Request $request): JsonResponse
     {
-        $user = $request->user()->load(['wave', 'room']);
+        $user = $request->user()->load('room');
 
         return response()->json([
             'success' => true,
@@ -90,11 +90,6 @@ class AuthController extends Controller
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'wave' => $user->wave ? [
-                'id' => $user->wave->id,
-                'name' => $user->wave->name,
-                'code' => $user->wave->code,
-            ] : null,
             'room' => $user->room ? [
                 'id' => $user->room->id,
                 'name' => $user->room->name,

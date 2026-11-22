@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Wave;
 use Illuminate\Support\Facades\Route;
 
 // Halaman Pengunjung (Guest)
@@ -19,3 +20,7 @@ Route::get('/staff/login', function () {
 Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
 })->name('staff.dashboard');
+
+Route::get('/staff/waves/{wave}', function (Wave $wave) {
+    return view('staff.wave', ['wave' => $wave]);
+})->name('staff.waves.show');

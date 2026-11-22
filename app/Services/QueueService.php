@@ -17,11 +17,11 @@ class QueueService
     public function getActiveQueues(User $staff): Collection
     {
         return Ticket::with(['wave', 'room'])
-            ->where('wave_id', $staff->wave_id)
             ->where('room_id', $staff->room_id)
             ->whereIn('status', TicketStatus::activeStatuses())
-            // Urutkan CALLED di paling atas, lalu urutkan berdasarkan sequence_number terkecil (FIFO)
+            // Tampilkan tiket yang sedang dipanggil lebih dulu, lalu antrean ruangan secara FIFO.
             ->orderByRaw("CASE WHEN status = 'CALLED' THEN 0 ELSE 1 END ASC")
+            ->orderBy('created_at', 'asc')
             ->orderBy('sequence_number', 'asc')
             ->get();
     }
@@ -43,8 +43,7 @@ class QueueService
             }
 
             // Aturan V1: Wajib selesaikan tiket CALLED saat ini sebelum memanggil tiket baru
-            $hasOngoingCall = Ticket::where('wave_id', $lockedTicket->wave_id)
-                ->where('room_id', $lockedTicket->room_id)
+            $hasOngoingCall = Ticket::where('room_id', $lockedTicket->room_id)
                 ->where('status', TicketStatus::CALLED)
                 ->lockForUpdate()
                 ->exists();
@@ -53,11 +52,16 @@ class QueueService
                 throw new RuntimeException('Selesaikan pelayanan tiket yang sedang dipanggil (CALLED) terlebih dahulu.');
             }
 
-            // Aturan FIFO: Pastikan tidak ada tiket WAITING lain dengan nomor urut lebih awal di ruangan ini
-            $earlierWaitingExists = Ticket::where('wave_id', $lockedTicket->wave_id)
-                ->where('room_id', $lockedTicket->room_id)
+            // Nomor urut berlaku per gelombang; gunakan waktu pembuatan untuk FIFO lintas gelombang.
+            $earlierWaitingExists = Ticket::where('room_id', $lockedTicket->room_id)
                 ->where('status', TicketStatus::WAITING)
-                ->where('sequence_number', '<', $lockedTicket->sequence_number)
+                ->where(function ($query) use ($lockedTicket) {
+                    $query->where('created_at', '<', $lockedTicket->created_at)
+                        ->orWhere(function ($query) use ($lockedTicket) {
+                            $query->where('created_at', $lockedTicket->created_at)
+                                ->where('id', '<', $lockedTicket->id);
+                        });
+                })
                 ->exists();
 
             if ($earlierWaitingExists) {
@@ -103,7 +107,6 @@ class QueueService
     public function getCompletedHistory(User $staff): Collection
     {
         return Ticket::with(['wave', 'room'])
-            ->where('wave_id', $staff->wave_id)
             ->where('room_id', $staff->room_id)
             ->where('status', TicketStatus::COMPLETED)
             ->orderBy('completed_at', 'desc')
