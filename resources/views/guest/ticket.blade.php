@@ -83,6 +83,7 @@
 
                 <!-- Bagian Kanan: Sobekan Gelombang (Hanya sudut kanan yang melengkung) -->
                 <div class="w-[58px] border-l-2 border-dashed border-black bg-black text-white flex flex-col items-center justify-center py-3 px-1 shrink-0 rounded-r-[9px]">
+                    <!-- <span>disini untuk tampilkan waktu gelombangnya</span> -->
                     <span id="ticket-wave-display" class="vertical-wave text-lg font-bold tracking-widest uppercase whitespace-nowrap">
                         Gelombang -
                     </span>
@@ -103,7 +104,7 @@
 
         <!-- 4. POP-UP MODAL SAAT STATUS DIPANGGIL (CALLED) -->
         <div id="called-modal" class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
-            <div class="w-full max-w-[320px] bg-white border-[3px] border-black p-6 text-center shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <div class="w-full max-w-[320px] bg-white border-[3px] border-black p-6 text-">
                 <h2 class="text-xl font-bold tracking-tight mb-2">Panggilan Antrian</h2>
                 <p id="called-modal-text" class="font-mono-ticket text-sm text-neutral-800 leading-relaxed mb-5">
                     Anda sudah dipanggil, harap ke ruangan tujuan Anda.

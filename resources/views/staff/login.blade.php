@@ -21,7 +21,7 @@
         <br>
         <div>
             <label>Password:</label><br>
-            <input type="password" id="password" placeholder="Masukan Password" required>
+            <input type="password" id="password" value="password123" placeholder="Masukan Password" required>
         </div>
         <br>
         <button type="submit" id="btn-login">Login</button>

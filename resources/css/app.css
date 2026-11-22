@@ -6,23 +6,7 @@
 /* 1. Daftarkan @font-face */
 @font-face {
     font-family: 'Alte Haas Grotesk';
-    src: url('/Fonts/AlteHaasGroteskRegular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Alte Haas Grotesk';
-    src: url('/Fonts/AlteHaasGroteskBold.ttf') format('truetype'); /* Pastikan nama file sesuai */
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Roboto Mono';
-    src: url('/Fonts/RobotoMono-Regular.ttf') format('truetype');
+    src: url('../../public/Fonts/AlteHaasGroteskRegular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -30,18 +14,21 @@
 
 @font-face {
     font-family: 'Roboto Mono';
-    src: url('/Fonts/RobotoMono-Medium.ttf') format('truetype'); /* Opsional jika ada */
-    font-weight: 500;
+    src: url('../../public/Fonts/RobotoMono-Regular.ttf') format('truetype');
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
-/* 2. Daftarkan ke dalam @theme Tailwind v4 */
+@font-face {
+    font-family: 'Inter';
+    src: url('../../public/Fonts/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
+    font-style: normal;
+    font-display: swap;
+}
+
 @theme {
-    /* Jadikan Roboto Mono sebagai font default seluruh halaman (font-sans / font-mono) */
-    --font-sans: 'Roboto Mono', ui-monospace, SFMono-Regular, monospace;
-    --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, monospace;
-    
-    /* Buat custom utility class 'font-alte' untuk judul */
     --font-alte: 'Alte Haas Grotesk', sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+    --font-inter: 'Inter', sans-serif;
 }

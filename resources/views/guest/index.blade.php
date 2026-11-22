@@ -13,20 +13,20 @@
     <div class="w-full max-w-2xl mx-auto px-6 pt-12 md:pt-16 pb-6 flex-grow flex flex-col justify-between z-10">
 
         <div class="header-landing-guest flex flex-col mb-10 md:mb-14">
-            <h1 class="text-6xl sm:text-7xl md:text-8xl font-alte font-bold tracking-tighter leading-[0.88]">Sistem</h1>
-            <h1 class="text-6xl mt-[-8px] sm:text-7xl md:text-8xl font-alte font-bold tracking-tighter leading-[0.88]">Antrian</h1>
-            <p class="text-base sm:text-lg md:text-xl -mt-[8px] font-mono text-neutral-700">Pilih Gelombang Antrian</p>
+            <h1 class="text-6xl sm:text-7xl md:text-8xl font-alte font-bold tracking-[-3px] leading-[0.88]">Sistem</h1>
+            <h1 class="text-6xl mt-[-5px] sm:text-7xl md:text-8xl font-alte font-bold tracking-[-2px] leading-[0.88]">Antrian</h1>
+            <p class="text-base sm:text-lg md:text-xl -mt-[5px] font-mono text-neutral-700">Pilih Gelombang Antrian</p>
         </div>
 
         <div class="body-landing-guest my-auto">
-            <p id="message" class="text-red-600 font-mono text-sm mb-2"></p>
+            <p id="message" class="text-red-600 font-sans text-sm mb-2"></p>
             <div id="waves-container" class="flex flex-col border-t border-b border-black divide-y divide-black">
-                <p class="py-8 font-mono text-sm">Memuat data gelombang...</p>
+                <p class="py-8 font-sans text-sm">Memuat data gelombang...</p>
             </div>
         </div>
 
         <div class="footer-landing-guest mt-12 mb-4">
-            <p class="font-mono text-[11px] sm:text-xs leading-relaxed text-neutral-800 max-w-md">
+            <p class="font-sans text-[11px] sm:text-xs leading-relaxed text-neutral-800 max-w-md">
                 *Silakan pilih batch yang aktif untuk mendapatkan tiket antrean Anda. Kuota tiket diperbarui secara otomatis berdasarkan ketersediaan.
             </p>
         </div>
@@ -34,8 +34,8 @@
     </div>
 
     <div class="w-full overflow-hidden select-none pointer-events-none leading-none flex justify-center items-end mt-2">
-        <span class="font-alte font-extrabold text-[11vh] sm:text-[10vh] md:text-[14vw] tracking-[-8px] text-black translate-y-[18%] whitespace-nowrap">
-            Antrian V01
+        <span class="font-inter font-[850] text-[10vh] sm:text-[10vh] md:text-[14vw] tracking-[-3px] text-black translate-y-[18%] whitespace-nowrap">
+            DosQueue
         </span>
     </div>
 
@@ -49,12 +49,12 @@
             color: '#000000',
             padding: '2rem',
             customClass: {
-                popup: 'border-2 border-black rounded-none font-mono p-6',
+                popup: 'border-2 border-black rounded-none font-sans p-6',
                 title: 'font-alte font-bold text-2xl sm:text-3xl tracking-tight text-black text-left !p-0',
-                htmlContainer: 'font-mono text-sm text-neutral-800 text-left !m-0 !mt-3 leading-relaxed',
+                htmlContainer: 'font-sans text-sm text-neutral-800 text-left !m-0 !mt-3 leading-relaxed',
                 actions: 'w-full flex justify-end gap-3 !mt-6 !p-0',
-                confirmButton: 'bg-black text-white font-mono text-xs sm:text-sm px-5 py-2.5 border border-black hover:bg-neutral-800 transition-colors cursor-pointer',
-                cancelButton: 'bg-transparent text-black font-mono text-xs sm:text-sm px-5 py-2.5 border border-black hover:bg-black/5 transition-colors cursor-pointer',
+                confirmButton: 'bg-black text-white font-sans text-xs sm:text-sm px-5 py-2.5 border border-black hover:bg-neutral-800 transition-colors cursor-pointer',
+                cancelButton: 'bg-transparent text-black font-sans text-xs sm:text-sm px-5 py-2.5 border border-black hover:bg-black/5 transition-colors cursor-pointer',
                 timerProgressBar: 'bg-black'
             }
         });
@@ -93,7 +93,7 @@
             const json = await res.json();
 
             if (!json.success || json.data.waves.length === 0) {
-                container.innerHTML = '<p class="py-8 font-mono text-sm">Tidak ada gelombang tersedia.</p>';
+                container.innerHTML = '<p class="py-8 font-sans text-sm">Tidak ada gelombang tersedia.</p>';
                 return;
             }
 
@@ -116,7 +116,7 @@
                 <button
                     type="button"
                     onclick="takeTicket(${wave.id}, '${wave.name}', ${wave.is_available}, this)"
-                    class="group flex flex-col w-full py-6 sm:py-8 text-left font-mono transition-colors ${wave.is_available ? 'hover:bg-black/5 cursor-pointer' : 'opacity-70 cursor-not-allowed'}">
+                    class="group flex flex-col w-full py-6 sm:py-8 text-left font-sans transition-colors ${wave.is_available ? 'hover:bg-black/5 cursor-pointer' : 'opacity-70 cursor-not-allowed'}">
                     
                     <!-- Baris Atas: Nama Batch + Indikator & Kuota -->
                     <div class="w-full flex items-center justify-between mb-2">
@@ -164,8 +164,8 @@
                 title: 'Konfirmasi Tiket',
                 text: `Apakah Anda yakin ingin mengambil tiket untuk ${waveName}?`,
                 showCancelButton: true,
-                confirmButtonText: '[Ya, Ambil Tiket]',
-                cancelButtonText: '[Batal]'
+                confirmButtonText: 'Ya, Ambil Tiket',
+                cancelButtonText: 'Batal'
             });
 
             if (!confirmResult.isConfirmed) return;
