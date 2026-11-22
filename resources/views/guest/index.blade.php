@@ -33,8 +33,8 @@
 
     </div>
 
-    <div class="w-full overflow-hidden select-none pointer-events-none leading-none flex justify-center items-end mt-2">
-        <span class="font-inter font-[850] text-[10vh] sm:text-[10vh] md:text-[14vw] tracking-[-3px] text-black translate-y-[18%] whitespace-nowrap">
+    <div class="w-full overflow-hidden select-none pointer-events-none leading-none flex justify-center items-end mt-[-16px]">
+        <span class="font-alte font-[950] text-[11vh] sm:text-[10vh] md:text-[14vw] text-black translate-y-[18%] whitespace-nowrap opacity-40 tracking-[-3px]">
             DosQueue
         </span>
     </div>
