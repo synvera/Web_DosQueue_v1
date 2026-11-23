@@ -6,7 +6,6 @@
     <title>Tiket Antrian - Antiran</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <style>
         /* Teks gelombang vertikal 90 derajat seperti referensi gambar */
         .vertical-wave {
