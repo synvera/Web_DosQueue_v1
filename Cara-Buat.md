@@ -86,7 +86,7 @@ Pastikan PHP dan Composer sudah dapat dijalankan. Buat proyek baru menggunakan C
 
 ```bash
 composer create-project laravel/laravel nama-projek
-cd dosqueue
+cd nama-projek
 ```
 
 Perintah tersebut mengunduh skeleton Laravel dan paket PHP yang dibutuhkan. Ganti `nama-projek` dengan nama proyek yang kamu inginkan, lalu masuk ke folder proyek dengan `cd nama-projek`.
